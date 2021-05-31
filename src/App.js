@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from "react-router-dom"
+
+import Main from "./Main"
+import ItemPage from "./ItemPage"
+
+import "./styles/css/normalize.css"
+import "./styles/css/webflow.css"
+import "./styles/css/appletreeexpress2-0.webflow.css"
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Main} />
+          <Route path="/item/:itemName" component={ItemPage} />
+        </Switch>
+      </BrowserRouter>
   );
 }
 
