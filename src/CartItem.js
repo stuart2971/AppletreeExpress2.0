@@ -1,4 +1,9 @@
-export default function CartItem({ item }){
+import {useState } from "react"
+import Cart from "./Cart"
+
+
+
+export default function CartItem({ item, removeFromCart }){
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -21,10 +26,12 @@ export default function CartItem({ item }){
         if(item.sideType) description.push(capitalizeFirstLetter("side: " + item.sideType))
         return <div className="cart_item_description">{description.join(" • ")}</div>
     }
+
     return (
         <div className="cart_item">
             <div className="cart_item_text_container">
                 <div className="cart_item_name">{item.itemType}</div>
+                <div onClick={() => removeFromCart(item.itemNumber)} className="cart_delete">x</div>
                 {parseDescription()}
             </div>
             <div className="cart_item_price">${item.price}</div>

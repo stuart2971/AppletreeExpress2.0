@@ -8,7 +8,7 @@ import CheckboxModule from "./modules/CheckboxModule"
 import Cart from "./Cart"
 
 import cartImage from "./styles/images/shopping-cart-p-500.png"
-import displayImage from "./styles/images/spicyFries.jpeg"
+import displayImage from "./styles/images/chickenSandwich.jpg"
 import backImage from "./styles/images/left-arrow.png"
 
 import ItemData from "./ItemData/ItemData.json"

@@ -2,6 +2,8 @@ import { useHistory } from "react-router-dom";
 
 import ItemData from "./ItemData/ItemData.json"
 
+import displayImage from "./styles/images/spicyFries.jpg"
+
 
 export default function ItemListing({ section }){
     const history = useHistory();
@@ -10,7 +12,7 @@ export default function ItemListing({ section }){
         history.push("/item" + url_path);
     }
     return (
-        <div id="combo_section" className="section_container">
+        <div id={section} className="section_container">
             <div className="grid_container">
                 {
                     ItemData[section].map((item, i) => {
@@ -21,7 +23,7 @@ export default function ItemListing({ section }){
                                     <div className="item_description">{item.description}</div>
                                     <div className="item_price">${item.price}</div>
                                 </div>
-                                <img src="images/spicyFries.jpeg" loading="lazy" alt="" className="item_image" />
+                                <img src={displayImage} loading="lazy" alt="" className="item_image" />
                             </div>
                         )
                     })
