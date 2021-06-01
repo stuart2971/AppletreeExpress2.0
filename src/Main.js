@@ -18,6 +18,7 @@ export default function Main(){
     let section = document.getElementById(s);
     section.scrollIntoView();
   }
+  let cartSize = Cart.getSize()
   return (
       <div className="wrapper">
         <div className="main_header"><img src="images/tree.png" loading="lazy" alt="" className="logo" /></div>
@@ -43,12 +44,21 @@ export default function Main(){
           <div className="cart_container">
             <div className="cart_header">Cart</div>
             <div className="cart_items_container">
-              {Cart.getSize() == 0 ? <p style={{marginTop: "15px", textAlign: "center"}}>Nothing in your cart yet :/ <br /> Click an item to add one!</p> : cart.map((item, i) => {
+              {cartSize == 0 ? <p style={{marginTop: "15px", textAlign: "center"}}>Nothing in your cart yet :/ <br /> Click an item to add one!</p> : cart.map((item, i) => {
                 console.log(item)
                 return <CartItem removeFromCart={removeFromCart} key={i} item={item} />
               })}
+              {cartSize > 0 ? 
+              <div className="cart_item">
+                <div className="cart_item_text_container">
+                    <div className="cart_item_name">Tax</div>
+                </div>
+                <div className="cart_item_price">${Cart.getTax()}</div>
+              </div>
+              : <div></div>}
             </div>
-            <a onClick={() => console.log(Cart.getCart())} href="#" className="button w-button">Checkout</a>
+            <hr />
+            <a onClick={() => console.log(Cart.getCart())} href="#" className="button w-button">Checkout {"$"+(Cart.getPrice()*1.13).toFixed(2)}</a>
           </div>
         </div>
       </div>

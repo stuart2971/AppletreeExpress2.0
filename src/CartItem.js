@@ -24,6 +24,7 @@ export default function CartItem({ item, removeFromCart }){
         if(item.mayoType) description.push(capitalizeFirstLetter(item.mayoType + " mayo"))
         if(item.friesType) description.push(capitalizeFirstLetter(item.friesType))
         if(item.sideType) description.push(capitalizeFirstLetter("side: " + item.sideType))
+        if(item.drink) description.push(capitalizeFirstLetter(item.drink))
         return <div className="cart_item_description">{description.join(" • ")}</div>
     }
 
@@ -34,7 +35,7 @@ export default function CartItem({ item, removeFromCart }){
                 <div onClick={() => removeFromCart(item.itemNumber)} className="cart_delete">x</div>
                 {parseDescription()}
             </div>
-            <div className="cart_item_price">${item.price}</div>
+            <div className="cart_item_price">${item.price.toFixed(2)}</div>
         </div>
     )
 }

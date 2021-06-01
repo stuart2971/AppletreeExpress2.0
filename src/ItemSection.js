@@ -21,7 +21,7 @@ export default function ItemListing({ section }){
                                 <div className="item_text_container">
                                     <div className="item_name">{item.name}</div>
                                     <div className="item_description">{item.description}</div>
-                                    <div className="item_price">${item.price}</div>
+                                    <div className="item_price">${item.price.toFixed(2)}</div>
                                 </div>
                                 <img src={displayImage} loading="lazy" alt="" className="item_image" />
                             </div>

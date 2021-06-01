@@ -93,9 +93,10 @@ export default function ItemPage(){
             <div className="column w-col w-col-6">
               <div className="w-form">
                   <div className="product_name">{item.name}</div>
-                  <div className="text-block-2">${item.price}</div>
+                  <div className="text-block-2">${item.price.toFixed(2)}</div>
                   
                   {renderModules()}
+                  
                   <div className="cart_item_description">{item.note}</div>
                   <br />
                   <input onClick={addItemToCart} type="button" defaultValue="Add to cart" data-wait="Please wait..." className="button w-button" />
