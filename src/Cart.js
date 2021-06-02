@@ -12,7 +12,9 @@ export default class Cart{
         const itemKeys = Object.keys(item) 
         specialCostsKeys.forEach((key) => {
             if(itemKeys.includes(key)){
-                item.price += specialCosts[key]
+                if(itemKeys[key]){
+                    item.price += specialCosts[key]
+                }
             }
         })
 
