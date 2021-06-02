@@ -3,6 +3,7 @@ import CartItem from "./CartItem"
 import Cart from "./Cart"
 import { useState } from 'react';
 
+import logo from "./styles/images/tree.png"
 
 export default function Main(){
   const [cart, setCart] = useState(Cart.getCart())
@@ -21,7 +22,9 @@ export default function Main(){
   let cartSize = Cart.getSize()
   return (
       <div className="wrapper">
-        <div className="main_header"><img src="images/tree.png" loading="lazy" alt="" className="logo" /></div>
+        <div className="main_header">
+          <img src={logo} loading="lazy" alt="" className="logo" />
+        </div>
         <div className="content_container">
           <div className="items_section_container">
             <div className="items_header">

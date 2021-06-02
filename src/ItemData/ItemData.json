@@ -10,7 +10,7 @@
             "type": "text",
             "placeHolder": "Name",
             "required": true
-        }, {
+        },{
             "type": "checkbox",
             "required": false,
             "options": [{
@@ -27,6 +27,26 @@
                 "objKey": "onion"
               }]
         },{
+          "objKey": "spice",
+          "type":"dropdown",
+          "required": true,
+          "options": [{
+              "option": "Spice Level",
+              "value": ""
+            }, {
+              "option": "No spice",
+              "value": "none"
+            }, {
+              "option": "Little spice",
+              "value": "little"
+            }, {
+              "option": "Medium spice",
+              "value": "medium"
+            }, {
+              "option": "Lots of spice",
+              "value": "spicy"
+            }]
+      },{
             "objKey": "cheese",
             "type":"dropdown",
             "required": false,
@@ -34,36 +54,16 @@
                 "option": "Cheese (optional)",
                 "value": ""
               }, {
-                "option": "Cheddar (+$0.50)",
+                "option": "Cheddar (+$0.75)",
                 "value": "cheddar"
               }, {
-                "option": "Mozzarella (+$0.50)",
+                "option": "Mozzarella (+$0.75)",
                 "value": "mozzarella"
               }, {
-                "option": "Feta (+$0.50)",
+                "option": "Feta (+$0.75)",
                 "value": "feta"
               }]
         },{
-            "objKey": "spice",
-            "type":"dropdown",
-            "required": true,
-            "options": [{
-                "option": "Spice Level",
-                "value": ""
-              }, {
-                "option": "No spice",
-                "value": "none"
-              }, {
-                "option": "Little spice",
-                "value": "little"
-              }, {
-                "option": "Medium spice",
-                "value": "medium"
-              }, {
-                "option": "Lots of spice",
-                "value": "spicy"
-              }]
-        }, {
             "type": "text",
             "placeHolder": "Extra Instructions (optional)",
             "objKey": "extraInstructions",
@@ -97,23 +97,6 @@
                 "objKey": "onion"
               }]
         },{
-            "objKey": "cheese",
-            "type":"dropdown",
-            "required": false,
-            "options": [{
-                "option": "Cheese (optional)",
-                "value": ""
-              }, {
-                "option": "Cheddar (+$0.50)",
-                "value": "cheddar"
-              }, {
-                "option": "Mozzarella (+$0.50)",
-                "value": "mozzarella"
-              }, {
-                "option": "Feta (+$0.50)",
-                "value": "feta"
-              }]
-        },{
             "objKey": "spice",
             "type":"dropdown",
             "required": true,
@@ -134,6 +117,23 @@
                 "value": "spicy"
               }]
         }, {
+          "objKey": "cheese",
+          "type":"dropdown",
+          "required": false,
+          "options": [{
+              "option": "Cheese (optional)",
+              "value": ""
+            }, {
+              "option": "Cheddar (+$0.75)",
+              "value": "cheddar"
+            }, {
+              "option": "Mozzarella (+$0.75)",
+              "value": "mozzarella"
+            }, {
+              "option": "Feta (+$0.75)",
+              "value": "feta"
+            }]
+      },{
             "type": "text",
             "placeHolder": "Extra Instructions (optional)",
             "objKey": "extraInstructions",
@@ -266,7 +266,6 @@
         "price": 8.85,
         "description": "this is temporary.  It is a placeholder to fill in some space.  ",
         "url_path": "combo_1",
-        "note": "If you are choosing delivery you will be able to choose your drink when we call and confirm your order.  If you are picking up your food, you can choose your drink in store.  ",
         "modules": [{
             "objKey": "name",
             "type": "text",
@@ -330,13 +329,13 @@
                 "option": "Cheese (optional)",
                 "value": ""
               }, {
-                "option": "Cheddar (+$0.50)",
+                "option": "Cheddar (+$0.75)",
                 "value": "cheddar"
               }, {
-                "option": "Mozzarella (+$0.50)",
+                "option": "Mozzarella (+$0.75)",
                 "value": "mozzarella"
               }, {
-                "option": "Feta (+$0.50)",
+                "option": "Feta (+$0.75)",
                 "value": "feta"
               }]
         }, {
@@ -389,7 +388,6 @@
         "price": 9.74,
         "description": "this is temporary.  It is a placeholder to fill in some space.  ",
         "url_path": "combo_2",
-        "note": "If you are choosing delivery you will be able to choose your drink when we call and confirm your order.  If you are picking up your food, you can choose your drink in store.  ",
         "modules": [{
             "objKey": "name",
             "type": "text",
@@ -467,13 +465,13 @@
                 "option": "Cheese (optional)",
                 "value": ""
               }, {
-                "option": "Cheddar (+$0.50)",
+                "option": "Cheddar (+$0.75)",
                 "value": "cheddar"
               }, {
-                "option": "Mozzarella (+$0.50)",
+                "option": "Mozzarella (+$0.75)",
                 "value": "mozzarella"
               }, {
-                "option": "Feta (+$0.50)",
+                "option": "Feta (+$0.75)",
                 "value": "feta"
               }]
         },{
@@ -526,7 +524,7 @@
         "price": 5.30,
         "description": "this is temporary.  It is a placeholder to fill in some space.  ",
         "url_path": "combo_3",
-        "note": "If you are choosing delivery you will be able to choose your drink when we call and confirm your order.  If you are picking up your food, you can choose your drink in store.  ",
+        "note": "This combo includes a falafel sandwich with either three spring rolls or a beverage (can not choose monster energy drink)",
         "modules": [{
             "objKey": "name",
             "type": "text",
@@ -641,7 +639,6 @@
         "price": 1.10,
         "description": "this is temporary.  It is a placeholder to fill in some space.  ",
         "url_path": "pop",
-        "note": "If you are choosing delivery you will be able to choose your drink when we call and confirm your order.  If you are picking up your food, you can choose your drink in store.  ",
         "modules": [{
           "type": "dropdown",
           "required": true,

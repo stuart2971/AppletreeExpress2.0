@@ -10,6 +10,7 @@ import Cart from "./Cart"
 import cartImage from "./styles/images/shopping-cart-p-500.png"
 import displayImage from "./styles/images/chickenSandwich.jpg"
 import backImage from "./styles/images/left-arrow.png"
+import errorImage from "./styles/images/error.png"
 
 import ItemData from "./ItemData/ItemData.json"
 
@@ -22,6 +23,8 @@ export default function ItemPage(){
       itemType: item.name,
       price: item.price
     })
+    const [error, setError] = useState("")
+
     function findItemByUrlPath(url_path){
       let sandwiches = ItemData.sandwiches
       let fries = ItemData.fries
@@ -65,12 +68,23 @@ export default function ItemPage(){
         let isRequired = modules[i].required
 
         if(isRequired & !data[modules[i].objKey]){
-          console.log("Missing field: ", modules[i].objKey)
+          setError("Please fill in all required fields.  Missing field: " + modules[i].objKey)
           return
         }
       }
       Cart.addToCart(data)
       RedirectToItemPage()
+    }
+    function renderError(){
+      if(error){
+        return (
+          <div className="product_page_error">
+            <img src={errorImage} loading="lazy" alt="" className="warning_symbol" />
+            <p className="paragraph">{error}</p>
+          </div>
+        )
+      }
+        
     }
     console.log(data)
     return (
@@ -93,12 +107,14 @@ export default function ItemPage(){
             <div className="column w-col w-col-6">
               <div className="w-form">
                   <div className="product_name">{item.name}</div>
-                  <div className="text-block-2">${item.price.toFixed(2)}</div>
+                  <div className="product_price">${item.price.toFixed(2)}</div>
                   
                   {renderModules()}
                   
                   <div className="cart_item_description">{item.note}</div>
+                  {renderError()}
                   <br />
+                  
                   <input onClick={addItemToCart} type="button" defaultValue="Add to cart" data-wait="Please wait..." className="button w-button" />
               </div>
             </div>

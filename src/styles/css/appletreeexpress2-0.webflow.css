@@ -465,7 +465,7 @@
   font-size: 1em;
 }
 
-.text-block-2 {
+.product_price {
   margin-bottom: 0.75em;
   font-size: 2em;
 }
@@ -524,6 +524,7 @@
 }
 
 .textarea {
+  margin-bottom: 0.75em;
   padding: 20px;
   border: 1px solid #000;
   font-size: 1em;
@@ -536,7 +537,6 @@
 
 .cart_delete {
   position: absolute;
-  left: 0%;
   top: 0%;
   right: auto;
   bottom: auto;
@@ -558,6 +558,38 @@
   font-size: 1.5em;
   text-align: center;
   cursor: pointer;
+}
+
+.text-block-3 {
+  overflow: scroll;
+}
+
+.product_page_error {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 0.75em;
+  padding: 1.04em 1.04em 1.04em 0em;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-style: none;
+  border-width: 1px;
+  border-color: #000;
+  border-radius: 0px;
+  background-color: #fff;
+}
+
+.warning_symbol {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 }
 
 @media screen and (min-width: 1440px) {
@@ -613,7 +645,7 @@
     font-size: 1em;
   }
 
-  .text-block-2 {
+  .product_price {
     font-size: 3em;
   }
 
@@ -669,6 +701,10 @@
   .cart_items_container {
     overflow: visible;
     height: auto;
+  }
+
+  .button {
+    margin-bottom: 20px;
   }
 
   .grid_container {
@@ -740,6 +776,10 @@
   .column {
     margin-top: 4.13em;
   }
+
+  .product_page_error {
+    padding-left: 0em;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -784,6 +824,32 @@
 
   .cart_delete {
     margin-left: -15px;
+  }
+
+  .product_page_error {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+
+  .text-block-4 {
+    text-align: left;
+    white-space: normal;
+    background-clip: border-box;
+  }
+
+  .text-block-5 {
+    width: auto;
+    max-width: 100px;
+  }
+
+  .paragraph {
+    text-align: left;
   }
 }
 
