@@ -3,7 +3,10 @@ import CartItem from "./CartItem"
 import Cart from "./Cart"
 import { useState } from 'react';
 
+
 import logo from "./styles/images/tree.png"
+
+import CheckoutSection from "./Checkout/CheckoutSection"
 
 export default function Main(){
   const [cart, setCart] = useState(Cart.getCart())
@@ -19,6 +22,7 @@ export default function Main(){
     let section = document.getElementById(s);
     section.scrollIntoView();
   }
+
   let cartSize = Cart.getSize()
   return (
       <div className="wrapper">
@@ -45,24 +49,20 @@ export default function Main(){
             </div>
           </div>
           <div className="cart_container">
-            <div className="cart_header">Cart</div>
-            <div className="cart_items_container">
+            <div className="div-block-3">
+              <div className="cart_header">Cart</div>
+              <div className="cart_items_container">
+
               {cartSize == 0 ? <p style={{marginTop: "15px", textAlign: "center"}}>Nothing in your cart yet :/ <br /> Click an item to add one!</p> : cart.map((item, i) => {
                 console.log(item)
                 return <CartItem removeFromCart={removeFromCart} key={i} item={item} />
               })}
-              {cartSize > 0 ? 
-              <div className="cart_item">
-                <div className="cart_item_text_container">
-                    <div className="cart_item_name">Tax</div>
-                </div>
-                <div className="cart_item_price">${Cart.getTax()}</div>
+
               </div>
-              : <div></div>}
             </div>
-            <hr />
-            <a onClick={() => console.log(Cart.getCart())} href="#" className="button w-button">Checkout {"$"+(Cart.getPrice()*1.13).toFixed(2)}</a>
+            <CheckoutSection />
           </div>
+
         </div>
       </div>
     )

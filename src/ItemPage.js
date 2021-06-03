@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { useHistory } from "react-router-dom";
 
-import TextModule from "./modules/TextModule"
-import DropdownModule from "./modules/DropdownModule"
-import CheckboxModule from "./modules/CheckboxModule"
+import TextModule from "./InputModules/TextModule"
+import DropdownModule from "./InputModules/DropdownModule"
+import CheckboxModule from "./InputModules/CheckboxModule"
 
 import Cart from "./Cart"
 

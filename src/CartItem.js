@@ -29,7 +29,7 @@ export default function CartItem({ item, removeFromCart }){
     }
 
     return (
-        <div className="cart_item">
+        <div className="cart_item" style={{textAlign: "left"}}>
             <div className="cart_item_text_container">
                 <div className="cart_item_name">{item.itemType}</div>
                 <div onClick={() => removeFromCart(item.itemNumber)} className="cart_delete">x</div>
