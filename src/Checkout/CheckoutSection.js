@@ -1,9 +1,10 @@
 import { useState } from "react"
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+
 import CheckoutForm from "./CheckoutForm"
 
-const stripePromise = loadStripe("pk_test_51HPrfXFFjnckJleAtAsVlq5YqKYOOaM6Lo9kMYDx5b8R5oaLuEeAsIFT96sR3w1snbaqkrA0MJMTMjF6WMfoUFvZ00PMv6zPhX");
+const stripePromise = loadStripe("pk_test_51IyiI5GIgacFkXbh3U0O9slOmHqxbtdIHa9TidnHvAt6DSqSg3QezLgkFDTCmcPqMmEPC3w3cHzxdfBxfUyrYrzP00l2DxnCbz");
 
 export default function CheckoutSection(){
     const [tab, setTab] = useState(1)

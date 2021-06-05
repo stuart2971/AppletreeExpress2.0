@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom";
 
 import TextModule from "./InputModules/TextModule"
@@ -8,44 +8,28 @@ import CheckboxModule from "./InputModules/CheckboxModule"
 import Cart from "./Cart"
 
 import cartImage from "./styles/images/shopping-cart-p-500.png"
-import displayImage from "./styles/images/chickenSandwich.jpg"
 import backImage from "./styles/images/left-arrow.png"
 import errorImage from "./styles/images/error.png"
 
-import ItemData from "./ItemData/ItemData.json"
-
-
 export default function ItemPage(){
     const history = useHistory();
-    const urlParam = history.location.pathname.split("/")[2]
-    const item = findItemByUrlPath(urlParam)
+    const [item, setItem] = useState({})
     const [data, setData] = useState({ 
       itemType: item.name,
       price: item.price
     })
     const [error, setError] = useState("")
 
-    function findItemByUrlPath(url_path){
-      let sandwiches = ItemData.sandwiches
-      let fries = ItemData.fries
-      let combos = ItemData.combos
-      let others = ItemData.others
-      for(let i = 0; i < sandwiches.length; i++){
-        if(sandwiches[i].url_path == url_path) return sandwiches[i]
-      }
-      for(let i = 0; i < fries.length; i++){
-        if(fries[i].url_path == url_path) return fries[i]
-      }
-      for(let i = 0; i < combos.length; i++){
-        if(combos[i].url_path == url_path) return combos[i]
-      }
-      for(let i = 0; i < others.length; i++){
-        if(others[i].url_path == url_path) return others[i]
-      }
-    } 
-    function RedirectToItemPage(){
-        history.push("/");
-    }
+    useEffect(async () => {
+      const urlParam = history.location.pathname.split("/")[2]
+      let item = await (await fetch("http://localhost:3001/item/" + urlParam)).json()
+      setItem(item)
+      setData({
+        itemType: item.name,
+        price: item.price
+      })
+    }, [])
+
     function updateData(key, value){
       setData({...data, [key]: value})
     }
@@ -72,8 +56,9 @@ export default function ItemPage(){
           return
         }
       }
+      // Inserted into cart successfully
       Cart.addToCart(data)
-      RedirectToItemPage()
+      history.push("/");
     }
     function renderError(){
       if(error){
@@ -86,11 +71,15 @@ export default function ItemPage(){
       }
         
     }
-    console.log(data)
+
+    if(JSON.stringify(item) === JSON.stringify({}))
+      return <div>Loading...</div>
+
+    console.log(item.image)
     return (
         <div className="section">
         <div className="header">
-          <a onClick={RedirectToItemPage} className="w-inline-block">
+          <a onClick={() => history.push("/")} className="w-inline-block">
             <img src={backImage} loading="lazy" alt="" className="image" />
           </a>
           <div className="cart_icon_container">
@@ -103,11 +92,12 @@ export default function ItemPage(){
         <div className="product_container">
           <div className="columns w-row">
             <div className="w-col w-col-6">
-              <img src={displayImage} loading="lazy" alt="" /></div>
+              {item.image ? <img src={item.image} loading="lazy" alt="" /> : "Image not available"}
+              </div>
             <div className="column w-col w-col-6">
               <div className="w-form">
                   <div className="product_name">{item.name}</div>
-                  <div className="product_price">${item.price.toFixed(2)}</div>
+                  <div className="product_price">${item.price}</div>
                   
                   {renderModules()}
                   

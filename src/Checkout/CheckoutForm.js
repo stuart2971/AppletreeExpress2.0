@@ -2,6 +2,7 @@ import React from 'react';
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 
 import CardSection from './CardSection';
+import Cart from '../Cart';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -12,13 +13,24 @@ export default function CheckoutForm() {
     // which would refresh the page.
     event.preventDefault();
 
+    let response = await fetch('http://localhost:3001/secret', {
+      method: 'POST',
+      mode: "cors",
+      credentials: "same-origin",
+      body: JSON.stringify(Cart.getCart()),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    let client_secret = await response.json()
+
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
-
-    const result = await stripe.confirmCardPayment('{CLIENT_SECRET}', {
+    
+    const result = await stripe.confirmCardPayment(client_secret.client_secret, {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
@@ -26,13 +38,16 @@ export default function CheckoutForm() {
         },
       }
     });
+    console.log("Result: ", result)
+    
 
     if (result.error) {
       // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
+      console.log("error: ", result.error.message);
     } else {
       // The payment has been processed!
       if (result.paymentIntent.status === 'succeeded') {
+        console.log("Payment successful")
         // Show a success message to your customer
         // There's a risk of the customer closing the window before callback
         // execution. Set up a webhook or plugin to listen for the

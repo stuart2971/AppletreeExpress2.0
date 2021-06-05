@@ -41,10 +41,10 @@ export default function Main(){
             </div>
             <div className="items_content_container">
               
-              <ItemSection section="combos" />
-              <ItemSection section="sandwiches" />
+              <ItemSection section="combo" />
+              <ItemSection section="sandwich" />
               <ItemSection section="fries" />
-              <ItemSection section="others" />
+              <ItemSection section="other" />
               
             </div>
           </div>

@@ -1,21 +1,27 @@
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
-import ItemData from "./ItemData/ItemData.json"
-
-import displayImage from "./styles/images/spicyFries.jpg"
-
-
 export default function ItemListing({ section }){
-    const history = useHistory();
+    const [items, setItems] = useState({})
 
+    const history = useHistory();
     function RedirectToItemPage(url_path){
         history.push("/item" + url_path);
     }
+
+    useEffect(async () => {
+        let item = await (await fetch("http://localhost:3001/section/" + section)).json()
+        setItems(item)
+    }, [])
+
+    if(JSON.stringify(items) === JSON.stringify({}))
+        return <div>Loading...</div>
+
     return (
         <div id={section} className="section_container">
             <div className="grid_container">
                 {
-                    ItemData[section].map((item, i) => {
+                    items.map((item, i) => {
                         return(
                              <div key={i} className="item_container" onClick={() => RedirectToItemPage("/"+item.url_path)}>
                                 <div className="item_text_container">
@@ -23,7 +29,8 @@ export default function ItemListing({ section }){
                                     <div className="item_description">{item.description}</div>
                                     <div className="item_price">${item.price.toFixed(2)}</div>
                                 </div>
-                                <img src={require("./styles/images/spicyFries.jpg")} loading="lazy" alt="" className="item_image" />
+                                {item.image ? <img src={item.image} loading="lazy" alt="" className="item_image" /> : <div></div>}
+                                
                             </div>
                         )
                     })
