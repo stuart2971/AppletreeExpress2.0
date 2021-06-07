@@ -22,7 +22,6 @@ export default function CheckoutSection(){
             )
         }
     }
-    console.log(tab)
     return (
         <div className="checkout_container">
             <div className="form-block w-form">

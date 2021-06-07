@@ -68,15 +68,14 @@ export default function ItemPage(){
             <p className="paragraph">{error}</p>
           </div>
         )
-      }
-        
+      }   
     }
 
     if(JSON.stringify(item) === JSON.stringify({}))
       return <div>Loading...</div>
 
-    console.log(item.image)
-    return (
+    // console.log(data)
+      return (
         <div className="section">
         <div className="header">
           <a onClick={() => history.push("/")} className="w-inline-block">

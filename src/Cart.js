@@ -1,19 +1,22 @@
-import specialCosts from "./ItemData/specialCosts.json"
-
 export default class Cart{
     static cart = []
     static itemCount = 0
+    static specialCosts = {}
 
+    static setSpecialCosts(specialCosts){
+        this.specialCosts = specialCosts
+    }
     static addToCart(item){
         // Keeps track of item number so that you can remove the correct item
         item.itemNumber = this.itemCount
         // For extra costs like cheese
-        const specialCostsKeys = Object.keys(specialCosts)
+        const specialCostsKeys = Object.keys(this.specialCosts)
         const itemKeys = Object.keys(item) 
+
         specialCostsKeys.forEach((key) => {
             if(itemKeys.includes(key)){
-                if(itemKeys[key]){
-                    item.price += specialCosts[key]
+                if(item[key] != ""){
+                    item.price += this.specialCosts[key]
                 }
             }
         })

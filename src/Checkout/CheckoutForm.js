@@ -60,7 +60,7 @@ export default function CheckoutForm() {
   return (
     <form onSubmit={handleSubmit} style={{width: "100%", alignContent: "center"}}>
       <CardSection />
-      <button className="w-button" style={{background: "black", fontSize: "1.4em", padding: "20px"}} disabled={!stripe}>Checkout</button>
+      <button className="w-button" style={{background: "black", fontSize: "1.4em", padding: "20px"}} disabled={!stripe}>Checkout {Cart.getSize() > 0 ? "$"+Cart.getPrice() : <></>}</button>
     </form>
   );
 }
