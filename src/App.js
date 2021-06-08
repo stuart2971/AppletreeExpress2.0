@@ -12,7 +12,7 @@ import Cart from "./Cart"
 function App() {
 
   useEffect(async () => {
-    const specialCosts = await (await fetch("http://localhost:3001/pricing/specialCosts")).json()
+    const specialCosts = await (await fetch("http://localhost:3001/item/specialCosts")).json()
     Cart.setSpecialCosts(specialCosts)
   }, [])
 

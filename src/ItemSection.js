@@ -10,7 +10,7 @@ export default function ItemListing({ section }){
     }
 
     useEffect(async () => {
-        let item = await (await fetch("http://localhost:3001/section/" + section)).json()
+        let item = await (await fetch("http://localhost:3001/item/type/" + section)).json()
         setItems(item)
     }, [])
 

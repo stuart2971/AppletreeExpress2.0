@@ -13,7 +13,7 @@ export default function CheckoutForm() {
     // which would refresh the page.
     event.preventDefault();
 
-    let response = await fetch('http://localhost:3001/secret', {
+    let response = await fetch('http://localhost:3001/payment/createPayment', {
       method: 'POST',
       mode: "cors",
       credentials: "same-origin",
@@ -56,11 +56,11 @@ export default function CheckoutForm() {
       }
     }
   };
-
+  let total = (Cart.getPrice()*1.13).toFixed(2)
   return (
     <form onSubmit={handleSubmit} style={{width: "100%", alignContent: "center"}}>
       <CardSection />
-      <button className="w-button" style={{background: "black", fontSize: "1.4em", padding: "20px"}} disabled={!stripe}>Checkout {Cart.getSize() > 0 ? "$"+Cart.getPrice() : <></>}</button>
+      <button className="w-button" style={{background: "black", fontSize: "1.4em", padding: "20px"}} disabled={!stripe}>Checkout {Cart.getSize() > 0 ? "$" + total : <></>}</button>
     </form>
   );
 }

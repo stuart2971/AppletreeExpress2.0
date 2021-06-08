@@ -22,7 +22,7 @@ export default function ItemPage(){
 
     useEffect(async () => {
       const urlParam = history.location.pathname.split("/")[2]
-      let item = await (await fetch("http://localhost:3001/item/" + urlParam)).json()
+      let item = await (await fetch("http://localhost:3001/item/url/" + urlParam)).json()
       setItem(item)
       setData({
         itemType: item.name,

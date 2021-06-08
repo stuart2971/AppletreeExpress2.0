@@ -7,6 +7,10 @@ export default class Cart{
         this.specialCosts = specialCosts
     }
     static addToCart(item){
+        if(JSON.stringify(this.specialCosts) === JSON.stringify({})){
+            alert("Special costs is not loaded yet") 
+            return
+        }
         // Keeps track of item number so that you can remove the correct item
         item.itemNumber = this.itemCount
         // For extra costs like cheese
@@ -43,9 +47,9 @@ export default class Cart{
     static getPrice(){
         let total = 0
         for(let i = 0; i < this.cart.length; i++) total += this.cart[i].price
-        return total.toFixed(2)
+        return total
     }
     static getTax(){
-        return (this.getPrice() * 0.13).toFixed(2)
+        return (this.getPrice() * 0.13)
     }
 }

@@ -55,10 +55,15 @@ export default function Main(){
               <div className="cart_header">Cart</div>
               <div className="cart_items_container">
 
-              {cartSize == 0 ? <p style={{marginTop: "15px", textAlign: "center"}}>Nothing in your cart yet :/ <br /> Click an item to add one!</p> : cart.map((item, i) => {
-                return <CartItem removeFromCart={removeFromCart} key={i} item={item} />
-              })}
-
+              {cartSize == 0 ? <p style={{marginTop: "15px", textAlign: "center"}}>Nothing in your cart yet :/ <br /> Click an item to add one!</p> : 
+              <div>
+                {cart.map((item, i) => {
+                  return <CartItem removeFromCart={removeFromCart} key={i} item={item} />
+                })}
+                <CartItem item={{itemType: "Tax", price: parseFloat(Cart.getTax())}} />
+              </div>
+              }
+              
               </div>
             </div>
             <CheckoutSection />
