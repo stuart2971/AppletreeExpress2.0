@@ -4,7 +4,7 @@ import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 import CardSection from './CardSection';
 import Cart from '../Cart';
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ getCustomerDetails, tab }) {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -13,11 +13,21 @@ export default function CheckoutForm() {
     // which would refresh the page.
     event.preventDefault();
 
+    let customerDetails = getCustomerDetails()
+    console.log(customerDetails)
+    if(!customerDetails) return 
+    
+    const order = {
+      items: Cart.getCart(),
+      customerDetails,
+      delivery: tab == 2 ? true : false
+    }
+
     let response = await fetch('http://localhost:3001/payment/createPayment', {
       method: 'POST',
       mode: "cors",
       credentials: "same-origin",
-      body: JSON.stringify(Cart.getCart()),
+      body: JSON.stringify(order),
       headers: {
         'Content-type': 'application/json'
       }
@@ -56,11 +66,15 @@ export default function CheckoutForm() {
       }
     }
   };
-  let total = (Cart.getPrice()*1.13).toFixed(2)
+
+  
+
+  let total = (Cart.getPrice()*1.13)
+  if(tab == 2) total += 3.49
   return (
     <form onSubmit={handleSubmit} style={{width: "100%", alignContent: "center"}}>
       <CardSection />
-      <button className="w-button" style={{background: "black", fontSize: "1.4em", padding: "20px"}} disabled={!stripe}>Checkout {Cart.getSize() > 0 ? "$" + total : <></>}</button>
+      <button className="w-button" style={{background: "black", fontSize: "1.4em", padding: "20px"}} disabled={!stripe}>Checkout {Cart.getSize() > 0 ? "$" + total.toFixed(2) : <></>}</button>
     </form>
   );
 }

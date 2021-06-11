@@ -15,8 +15,9 @@ export default function ItemPage(){
     const history = useHistory();
     const [item, setItem] = useState({})
     const [data, setData] = useState({ 
-      itemType: item.name,
-      price: item.price
+      itemName: "",
+      price: "",
+      type: ""
     })
     const [error, setError] = useState("")
 
@@ -25,8 +26,9 @@ export default function ItemPage(){
       let item = await (await fetch("http://localhost:3001/item/url/" + urlParam)).json()
       setItem(item)
       setData({
-        itemType: item.name,
-        price: item.price
+        itemName: item.name,
+        price: item.price,
+        type: item.type
       })
     }, [])
 
@@ -56,6 +58,7 @@ export default function ItemPage(){
           return
         }
       }
+      console.log(data)
       // Inserted into cart successfully
       Cart.addToCart(data)
       history.push("/");

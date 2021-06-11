@@ -38,7 +38,6 @@ export default class Cart{
     static removeByItemNumber(itemNumber){
         for(let i = 0; i < this.cart.length; i++){
             if(this.cart[i].itemNumber == itemNumber){
-                console.log(this.cart[i])
                 this.cart.splice(i, 1)
                 return
             }

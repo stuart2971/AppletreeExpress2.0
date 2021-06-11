@@ -6,26 +6,59 @@ import CheckoutForm from "./CheckoutForm"
 
 const stripePromise = loadStripe("pk_test_51IyiI5GIgacFkXbh3U0O9slOmHqxbtdIHa9TidnHvAt6DSqSg3QezLgkFDTCmcPqMmEPC3w3cHzxdfBxfUyrYrzP00l2DxnCbz");
 
-export default function CheckoutSection(){
+export default function CheckoutSection({ changeIsDelivery }){
     const [tab, setTab] = useState(1)
+    const [name, setName] = useState("")
+    const [phone, setPhone] = useState("")
+    const [address, setAddress] = useState("")
+    const [error, setError] = useState("")
+    
 
     function renderTab(){
         if(tab == 1){
+            changeIsDelivery(false)
             return <></>
         }
         if(tab == 2){
+            changeIsDelivery(true)
             return (
                 <div data-w-tab="Tab 2" className="w-tab-pane w--tab-active">
-                    <input type="text" className="text-field w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder="Address" id="name-2" required />
-                    <input type="text" className="text-field w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder="Phone Number" id="name-2" required />
+                    <input onChange={e => setAddress(e.target.value)} type="text" className="text-field w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder="Address" id="name-2" required />
                 </div>
             )
         }
     }
+
+    function getCustomerDetails(){
+        let details = {
+            name,
+            phone
+        }
+        if(!name) {
+            setError("Please fill out the name field.")
+            return
+        }
+        if(!phone) {
+            setError("Please fill out the phone number field.")
+            return
+        }
+        if(tab == 2){
+            if(address) details.address = address
+            else {
+                setError("Please fill out the address field")
+                return
+            }
+            
+        }
+
+        return details
+    }
     return (
         <div className="checkout_container">
             <div className="form-block w-form">
-                <form id="email-form" name="email-form" data-name="Email Form"><input type="text" className="text-field w-input" maxLength={256} name="name" data-name="Name" placeholder="Name" id="name" />
+                <form id="email-form" name="email-form" data-name="Email Form">
+                    <input onChange={e => setName(e.target.value)} type="text" className="text-field w-input" maxLength={256} name="name" data-name="Name" placeholder="Name" id="name" />
+                    <input onChange={e => setPhone(e.target.value)} type="text" className="text-field w-input" maxLength={256} name="name-2" data-name="Name 2" placeholder="Phone Number" id="name-2" required />
                     <div data-duration-in={300} data-duration-out={100} className="tabs w-tabs">
                         <div className="tabs-menu w-tab-menu">
                             <a onClick={() => setTab(1)} data-w-tab="Tab 1" className={(tab == 1 ? "w--current tab-link-tab-1 w-inline-block w-tab-link": "tab-link-tab-1 w-inline-block w-tab-link")}>
@@ -41,9 +74,9 @@ export default function CheckoutSection(){
                     </div>
                 </form>
             </div>
-
+            {error ? <p>{error}</p> : <></>}
             <Elements stripe={stripePromise}>
-                <CheckoutForm />
+                <CheckoutForm tab={tab} getCustomerDetails={getCustomerDetails} />
             </Elements>        
         </div>
     )

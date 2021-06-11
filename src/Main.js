@@ -2,7 +2,6 @@ import ItemSection from "./ItemSection"
 import CartItem from "./CartItem"
 import Cart from "./Cart"
 import { useState } from 'react';
-import { useEffect } from "react"
 
 import logo from "./styles/images/tree.png"
 
@@ -12,8 +11,7 @@ export default function Main(){
   const [cart, setCart] = useState(Cart.getCart())
   // value is only used to update the state when removeFromCart is called
   const [value, setValue] = useState(0)
-
-  
+  const [isDelivery, setIsDelivery] = useState(false)
 
   function removeFromCart(itemNumber){
     Cart.removeByItemNumber(itemNumber)
@@ -23,6 +21,10 @@ export default function Main(){
   function goToSection(s){
     let section = document.getElementById(s);
     section.scrollIntoView();
+  }
+
+  function changeIsDelivery(d){
+    setIsDelivery(d)
   }
 
   let cartSize = Cart.getSize()
@@ -60,13 +62,14 @@ export default function Main(){
                 {cart.map((item, i) => {
                   return <CartItem removeFromCart={removeFromCart} key={i} item={item} />
                 })}
-                <CartItem item={{itemType: "Tax", price: parseFloat(Cart.getTax())}} />
+                <CartItem item={{itemName: "Tax", price: parseFloat(Cart.getTax())}} />
+                {isDelivery ? <CartItem item={{itemName: "Delivery Fee", price: 3.49}} /> : <></>}
               </div>
               }
               
               </div>
             </div>
-            <CheckoutSection />
+            <CheckoutSection changeIsDelivery={changeIsDelivery} />
           </div>
 
         </div>
