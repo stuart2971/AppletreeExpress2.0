@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 import Main from "./Main"
 import ItemPage from "./ItemPage"
+import PaymentComplete from "./PaymentComplete"
 
 import "./styles/css/normalize.css"
 import "./styles/css/webflow.css"
@@ -21,6 +22,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route path="/item/:itemName" component={ItemPage} />
+          <Route path="/payment_complete" component={PaymentComplete} />
         </Switch>
       </BrowserRouter>
   );

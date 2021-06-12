@@ -58,7 +58,6 @@ export default function ItemPage(){
           return
         }
       }
-      console.log(data)
       // Inserted into cart successfully
       Cart.addToCart(data)
       history.push("/");
@@ -77,7 +76,6 @@ export default function ItemPage(){
     if(JSON.stringify(item) === JSON.stringify({}))
       return <div>Loading...</div>
 
-    // console.log(data)
       return (
         <div className="section">
         <div className="header">

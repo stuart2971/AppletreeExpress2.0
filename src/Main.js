@@ -69,7 +69,7 @@ export default function Main(){
               
               </div>
             </div>
-            <CheckoutSection changeIsDelivery={changeIsDelivery} />
+            <CheckoutSection changeIsDelivery={changeIsDelivery} cartLength={Cart.getSize()}/>
           </div>
 
         </div>

@@ -1039,3 +1039,12 @@
   }
 }
 
+/* Stuart's CSS */
+.payment_complete_cart{
+  width: 50%;
+}
+@media only screen and (max-width: 600px) {
+  .payment_complete_cart{
+    width: 100%;
+  }
+}

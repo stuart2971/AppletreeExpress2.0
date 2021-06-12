@@ -51,4 +51,8 @@ export default class Cart{
     static getTax(){
         return (this.getPrice() * 0.13)
     }
+    static clearCart(){
+        this.cart = []
+        this.itemCount = 0
+    }
 }

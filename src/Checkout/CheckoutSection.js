@@ -4,9 +4,9 @@ import {loadStripe} from '@stripe/stripe-js';
 
 import CheckoutForm from "./CheckoutForm"
 
-const stripePromise = loadStripe("pk_test_51IyiI5GIgacFkXbh3U0O9slOmHqxbtdIHa9TidnHvAt6DSqSg3QezLgkFDTCmcPqMmEPC3w3cHzxdfBxfUyrYrzP00l2DxnCbz");
+const stripePromise = loadStripe("pk_live_51IyiI5GIgacFkXbhWEHBHWwYPXUEBAaQh8LedQPdYSOsmv9xFcBm7pB9qZSaO7FfxYtA97mVY62ZPEQ7SkS0hpS500j1f5rNGW");
 
-export default function CheckoutSection({ changeIsDelivery }){
+export default function CheckoutSection({ changeIsDelivery, cartLength }){
     const [tab, setTab] = useState(1)
     const [name, setName] = useState("")
     const [phone, setPhone] = useState("")
@@ -34,6 +34,10 @@ export default function CheckoutSection({ changeIsDelivery }){
             name,
             phone
         }
+        if(cartLength == 0){
+            setError("You have to add some items to your cart")
+            return
+        }
         if(!name) {
             setError("Please fill out the name field.")
             return
@@ -52,6 +56,10 @@ export default function CheckoutSection({ changeIsDelivery }){
         }
 
         return details
+    }
+
+    function setErr(err){
+        setError(err)
     }
     return (
         <div className="checkout_container">
@@ -74,10 +82,11 @@ export default function CheckoutSection({ changeIsDelivery }){
                     </div>
                 </form>
             </div>
-            {error ? <p>{error}</p> : <></>}
+            {error ? <h4>{error}</h4> : <></>}
             <Elements stripe={stripePromise}>
-                <CheckoutForm tab={tab} getCustomerDetails={getCustomerDetails} />
-            </Elements>        
+                <CheckoutForm setErr={setErr} tab={tab} getCustomerDetails={getCustomerDetails} />
+            </Elements>
+            
         </div>
     )
 }
