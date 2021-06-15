@@ -83,7 +83,7 @@ export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
 
   return (
     <form onSubmit={handleSubmit} style={{width: "100%", alignContent: "center"}}>
-      <ApplePay />
+      <ApplePay order={order} />
       <CardSection />
       <button disabled={buttonDisabled || !stripe} className="w-button" style={buttonDisabled ? {backgroundColor: "grey", fontSize: "1.4em", padding: "20px"}: {backgroundColor: "black", fontSize: "1.4em", padding: "20px"}}>{buttonDisabled ? "Please wait...": "Checkout" + total} </button>
     </form>

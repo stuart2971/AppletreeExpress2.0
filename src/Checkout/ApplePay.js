@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import { PaymentRequestButtonElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
 
-export default function ApplePay(){
+export default function ApplePay({ order }){
     const stripe = useStripe()
     const elements = useElements()
     const [paymentRequest, setPaymentRequest] = useState(null)
@@ -14,6 +14,8 @@ export default function ApplePay(){
         const pr = stripe.paymentRequest({
             currency: "cad",
             country: "CA",
+            requestPayerEmail: true,
+            requestPayerName: true,
             total: {
                 label: "Items (TESTING): ",
                 amount: 90
@@ -26,16 +28,16 @@ export default function ApplePay(){
             }
         })
         pr.on("paymentmethod", async (e) => {
-            const { clientSecret } = await fetch("/create-payment-intent", {
-                method: "POST",
+            let response = await fetch('https://appletree-express2.herokuapp.com/payment/createPayment', {
+                method: 'POST',
+                mode: "cors",
+                credentials: "same-origin",
+                body: JSON.stringify(order),
                 headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    paymentMethodType: "card",
-                    currency: "cad"
-                })
-            }).then(r => r.json())
+                    'Content-type': 'application/json'
+                }
+            })
+            let clientSecret = await response.json()
 
             const {error, paymentIntent} = await stripe.confirmCardPayment(
                 clientSecret, {
