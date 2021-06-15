@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 
@@ -10,7 +10,17 @@ export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
   const stripe = useStripe();
   const elements = useElements();
   const [buttonDisabled, setButtonDisabled] = useState(false)
+  // testing
+  const cart = Cart.getCart()
+  const order = {
+    items: cart,
+    delivery: tab == 2 ? true : false
+  }
 
+  useEffect(() => {
+
+  }, [cart])
+  // testing
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -81,6 +91,7 @@ export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
   let total = Cart.getSize() > 0 ? "$"+ (Cart.getPrice()*1.13).toFixed(2) : ""
   if(tab == 2) total += 3.49
 
+  console.log(order)
   return (
     <form onSubmit={handleSubmit} style={{width: "100%", alignContent: "center"}}>
       <ApplePay order={order} />
