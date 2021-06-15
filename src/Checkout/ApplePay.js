@@ -16,13 +16,42 @@ export default function ApplePay(){
             country: "CA",
             total: {
                 label: "Items (TESTING): ",
-                amount: 1999
+                amount: 90
             }
         })
         
         pr.canMakePayment().then((result) => {
             if(result){
                 setPaymentRequest(pr) 
+            }
+        })
+        pr.on("paymentmethod", async (e) => {
+            const { clientSecret } = await fetch("/create-payment-intent", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    paymentMethodType: "card",
+                    currency: "cad"
+                })
+            }).then(r => r.json())
+
+            const {error, paymentIntent} = await stripe.confirmCardPayment(
+                clientSecret, {
+                    payment_method: e.paymentMethod.id,
+                }, {
+                    handleActions: false
+                }
+            )
+            if(error) {
+                e.complete("fail")
+                return
+            }
+
+            e.complete("success")
+            if(paymentIntent.status == "requires_action") {
+                stripe.confirmCardPayment(clientSecret)
             }
         })
 
