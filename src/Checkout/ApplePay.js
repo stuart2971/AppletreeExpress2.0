@@ -28,16 +28,16 @@ export default function ApplePay({ order }){
             }
         })
         pr.on("paymentmethod", async (e) => {
-            let response = await fetch('https://appletree-express2.herokuapp.com/payment/createPayment', {
-                method: 'POST',
-                mode: "cors",
-                credentials: "same-origin",
-                body: JSON.stringify(order),
+            const { clientSecret } = await fetch("/create-payment-intent", {
+                method: "POST",
                 headers: {
-                    'Content-type': 'application/json'
-                }
-            })
-            let clientSecret = await response.json()
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    paymentMethodType: "card",
+                    currency: "cad"
+                })
+            }).then(r => r.json())
 
             const {error, paymentIntent} = await stripe.confirmCardPayment(
                 clientSecret, {
