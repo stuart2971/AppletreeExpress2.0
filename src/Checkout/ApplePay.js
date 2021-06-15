@@ -22,7 +22,7 @@ export default function ApplePay(){
         
         pr.canMakePayment().then((result) => {
             if(result){
-                setPaymentRequest(pr)
+                setPaymentRequest(pr) 
             }
         })
 
@@ -30,7 +30,6 @@ export default function ApplePay(){
 
     return (
         <>
-            <p>Apple Pay</p>
             {paymentRequest && <PaymentRequestButtonElement options={{paymentRequest}} />}
         </>
     )

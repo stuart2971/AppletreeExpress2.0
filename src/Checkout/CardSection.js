@@ -21,7 +21,7 @@ const CARD_ELEMENT_OPTIONS = {
 
 function CardSection() {
   return (
-    <label style={{border: "black 1px solid", padding: "15px"}}>
+    <label style={{border: "black 1px solid", padding: "15px", marginTop: "10px"}}>
       <CardElement options={CARD_ELEMENT_OPTIONS} />
     </label>
   );
