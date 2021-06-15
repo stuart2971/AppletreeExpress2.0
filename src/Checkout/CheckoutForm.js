@@ -24,7 +24,7 @@ export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
       delivery: tab == 2 ? true : false
     }
 
-    let response = await fetch('http://localhost:3001/payment/createPayment', {
+    let response = await fetch('https://appletree-express2.herokuapp.com/payment/createPayment', {
       method: 'POST',
       mode: "cors",
       credentials: "same-origin",
@@ -34,6 +34,12 @@ export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
       }
     })
     let client_secret = await response.json()
+
+    if(client_secret.customError){
+      setButtonDisabled(true)
+      setErr(client_secret.customError)
+      return
+    }
 
     if (!stripe || !elements) return
     

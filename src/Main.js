@@ -38,9 +38,9 @@ export default function Main(){
             <div className="items_header">
               <div className="item_header_container">
                 <a onClick={() => goToSection("combo")} className="item_headers_text">Combos</a>
-                <a onClick={() => goToSection("sandwich")} href="#" className="item_headers_text">Sandwiches</a>
-                <a onClick={() => goToSection("fries")} href="#" className="item_headers_text">Fries</a>
-                <a onClick={() => goToSection("other")} href="#" className="item_headers_text">Other</a>
+                <a onClick={() => goToSection("sandwich")} className="item_headers_text">Sandwiches</a>
+                <a onClick={() => goToSection("fries")} className="item_headers_text">Fries</a>
+                <a onClick={() => goToSection("other")} className="item_headers_text">Other</a>
               </div>
             </div>
             <div className="items_content_container">

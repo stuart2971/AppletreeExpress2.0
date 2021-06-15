@@ -23,7 +23,7 @@ export default function ItemPage(){
 
     useEffect(async () => {
       const urlParam = history.location.pathname.split("/")[2]
-      let item = await (await fetch("http://localhost:3001/item/url/" + urlParam)).json()
+      let item = await (await fetch("https://appletree-express2.herokuapp.com/item/url/" + urlParam)).json()
       setItem(item)
       setData({
         itemName: item.name,
