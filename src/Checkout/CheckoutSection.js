@@ -4,7 +4,9 @@ import {loadStripe} from '@stripe/stripe-js';
 
 import CheckoutForm from "./CheckoutForm"
 
-const stripePromise = loadStripe("pk_live_51IyiI5GIgacFkXbhWEHBHWwYPXUEBAaQh8LedQPdYSOsmv9xFcBm7pB9qZSaO7FfxYtA97mVY62ZPEQ7SkS0hpS500j1f5rNGW");
+const stripePromise = loadStripe('pk_live_51IyiI5GIgacFkXbhWEHBHWwYPXUEBAaQh8LedQPdYSOsmv9xFcBm7pB9qZSaO7FfxYtA97mVY62ZPEQ7SkS0hpS500j1f5rNGW', {
+    stripeAccount: 'acct_1IyiI5GIgacFkXbh'
+});
 
 export default function CheckoutSection({ changeIsDelivery, cartLength }){
     const [tab, setTab] = useState(1)

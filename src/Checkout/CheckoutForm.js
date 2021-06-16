@@ -3,24 +3,14 @@ import { useHistory } from "react-router-dom";
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 
 import CardSection from './CardSection';
-import ApplePay from './ApplePay';
+import ApplePay from "./ApplePay"
 import Cart from '../Cart';
 
 export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
   const stripe = useStripe();
   const elements = useElements();
   const [buttonDisabled, setButtonDisabled] = useState(false)
-  // testing
-  const cart = Cart.getCart()
-  const order = {
-    items: cart,
-    delivery: tab == 2 ? true : false
-  }
 
-  useEffect(() => {
-
-  }, [cart])
-  // testing
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -91,12 +81,11 @@ export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
   let total = Cart.getSize() > 0 ? "$"+ (Cart.getPrice()*1.13).toFixed(2) : ""
   if(tab == 2) total += 3.49
 
-  console.log(order)
   return (
     <form onSubmit={handleSubmit} style={{width: "100%", alignContent: "center"}}>
-      <ApplePay order={order} />
+      <ApplePay />
       <CardSection />
-      <button disabled={buttonDisabled || !stripe} className="w-button" style={buttonDisabled ? {backgroundColor: "grey", fontSize: "1.4em", padding: "20px"}: {backgroundColor: "black", fontSize: "1.4em", padding: "20px"}}>{buttonDisabled ? "Please wait...": "Checkout" + total} </button>
+      <button disabled={buttonDisabled || !stripe} className="w-button" style={buttonDisabled ? {backgroundColor: "grey", fontSize: "1.4em", padding: "20px"}: {backgroundColor: "black", fontSize: "1.4em", padding: "20px"}}>{buttonDisabled ? "Please wait...": "Checkout " + total} </button>
     </form>
   );
 }
