@@ -3,7 +3,6 @@ import { useHistory } from "react-router-dom";
 import {useStripe, useElements, CardElement} from '@stripe/react-stripe-js';
 
 import CardSection from './CardSection';
-import ApplePay from "./ApplePay"
 import Cart from '../Cart';
 
 export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
@@ -37,7 +36,7 @@ export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
     let client_secret = await response.json()
 
     if(client_secret.customError){
-      setButtonDisabled(true)
+      setButtonDisabled(false)
       setErr(client_secret.customError)
       return
     }
@@ -78,14 +77,13 @@ export default function CheckoutForm({ getCustomerDetails, tab, setErr }) {
   function redirect(url_path){
       history.push("/" + url_path);
   }
-  let total = Cart.getSize() > 0 ? "$"+ (Cart.getPrice()*1.13).toFixed(2) : ""
+  let total = Cart.getPrice() * 1.13
   if(tab == 2) total += 3.49
-
+  let totalString = Cart.getSize() > 0 ? "$" + total.toFixed(2) : ""
   return (
     <form onSubmit={handleSubmit} style={{width: "100%", alignContent: "center"}}>
-      <ApplePay />
       <CardSection />
-      <button disabled={buttonDisabled || !stripe} className="w-button" style={buttonDisabled ? {backgroundColor: "grey", fontSize: "1.4em", padding: "20px"}: {backgroundColor: "black", fontSize: "1.4em", padding: "20px"}}>{buttonDisabled ? "Please wait...": "Checkout " + total} </button>
+      <button disabled={buttonDisabled || !stripe} className="w-button" style={buttonDisabled ? {backgroundColor: "grey", fontSize: "1.4em", padding: "20px"}: {backgroundColor: "black", fontSize: "1.4em", padding: "20px"}}>{buttonDisabled ? "Please wait...": "Checkout " + totalString} </button>
     </form>
   );
 }

@@ -471,8 +471,10 @@
 
 .product_name {
   margin-bottom: 0.75em;
+  line-height: 1em;
   color: #000;
   font-size: 3em;
+  overflow-wrap: break-word;
 }
 
 .text-field {
@@ -482,6 +484,10 @@
   padding-bottom: 1.38em;
   padding-left: 1.38em;
   border: 1px solid #000;
+  /* border-bottom: 1px solid #000;
+  border-top: none;
+  border-left: none;
+  border-right: none; */
   font-size: 1em;
 }
 

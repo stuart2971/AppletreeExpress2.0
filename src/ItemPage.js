@@ -38,13 +38,25 @@ export default function ItemPage(){
     function renderModules(){
       return item.modules.map((module, i) => {
         if(module.type == "text"){
-          return <TextModule key={i} placeHolder={module.placeHolder} objKey={module.objKey} handleOnChange={updateData}/>
+          return <TextModule 
+                    limit={module.objKey == "name" ? 15 : undefined} 
+                    key={i} 
+                    placeHolder={module.placeHolder} 
+                    objKey={module.objKey} 
+                    handleOnChange={updateData}/>
         }
         if(module.type == "checkbox"){
-          return <CheckboxModule key={i} options={module.options} handleOnChange={updateData}/>
+          return <CheckboxModule 
+                    key={i} 
+                    options={module.options} 
+                    handleOnChange={updateData}/>
         }
         if(module.type == "dropdown"){
-          return <DropdownModule key={i} options={module.options} objKey={module.objKey} handleOnChange={updateData}/>
+          return <DropdownModule 
+                    key={i} 
+                    options={module.options} 
+                    objKey={module.objKey} 
+                    handleOnChange={updateData}/>
         }
       })
     }
@@ -72,44 +84,47 @@ export default function ItemPage(){
         )
       }   
     }
-
+    function capitalize(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     if(JSON.stringify(item) === JSON.stringify({}))
       return <div>Loading...</div>
 
-      return (
-        <div className="section">
-        <div className="header">
-          <a onClick={() => history.push("/")} className="w-inline-block">
-            <img src={backImage} loading="lazy" alt="" className="image" />
-          </a>
-          <div className="cart_icon_container">
-            <img src={cartImage} className="image-2" sizes="(max-width: 1279px) 40px, (max-width: 1439px) 3vw, 40px" />
-            <div className="div-block">
-              <div className="text-block">{Cart.getSize()}</div>
-            </div>
+    console.log(data)
+    return (
+      <div className="section">
+      <div className="header">
+        <a onClick={() => history.push("/")} className="w-inline-block">
+          <img src={backImage} loading="lazy" alt="" className="image" />
+        </a>
+        <div className="cart_icon_container">
+          <img src={cartImage} className="image-2" sizes="(max-width: 1279px) 40px, (max-width: 1439px) 3vw, 40px" />
+          <div className="div-block">
+            <div className="text-block">{Cart.getSize()}</div>
           </div>
         </div>
-        <div className="product_container">
-          <div className="columns w-row">
-            <div className="w-col w-col-6">
-              {item.image ? <img src={item.image} loading="lazy" alt="" /> : "Image not available"}
-              </div>
-            <div className="column w-col w-col-6">
-              <div className="w-form">
-                  <div className="product_name">{item.name}</div>
-                  <div className="product_price">${item.price}</div>
-                  
-                  {renderModules()}
-                  
-                  <div className="cart_item_description">{item.note}</div>
-                  {renderError()}
-                  <br />
-                  
-                  <input onClick={addItemToCart} type="button" defaultValue="Add to cart" data-wait="Please wait..." className="button w-button" />
-              </div>
+      </div>
+      <div className="product_container">
+        <div className="columns w-row">
+          <div className="w-col w-col-6">
+            {item.image ? <img src={item.image} loading="lazy" alt="" /> : "Image not available"}
+            </div>
+          <div className="column w-col w-col-6">
+            <div className="w-form">
+                <div className="product_name">{data.name ? capitalize(data.name) + "'s": ""} {item.name}</div>
+                <div className="product_price">${item.price} <span style={{fontSize: "0.5em"}}>{data.cheese ? " + $0.75 (with cheese)" : ""}</span></div>
+                
+                {renderModules()}
+                
+                <div className="cart_item_description">{item.note}</div>
+                {renderError()}
+                <br />
+                
+                <input onClick={addItemToCart} type="button" defaultValue="Add to cart" data-wait="Please wait..." className="button w-button" />
             </div>
           </div>
         </div>
       </div>
-    )
+    </div>
+  )
 }
