@@ -1,7 +1,3 @@
-import {useState } from "react"
-import Cart from "./Cart"
-
-
 
 export default function CartItem({ item, removeFromCart }){
     function capitalizeFirstLetter(string) {

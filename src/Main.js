@@ -1,11 +1,12 @@
 import ItemSection from "./ItemSection"
 import CartItem from "./CartItem"
 import Cart from "./Cart"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import logo from "./styles/images/tree.png"
 
 import CheckoutSection from "./Checkout/CheckoutSection"
+import ItemData from "./ItemData";
 
 export default function Main(){
   const [cart, setCart] = useState(Cart.getCart())
@@ -26,7 +27,12 @@ export default function Main(){
   function changeIsDelivery(d){
     setIsDelivery(d)
   }
+  useEffect(async () => {
+    if(!ItemData.fetchedSections) console.log(await ItemData.fetchSections())
+    setValue(value + 1)
+  }, []);
 
+  console.log("Rendering")
   let cartSize = Cart.getSize()
   return (
       <div className="wrapper">
@@ -45,10 +51,10 @@ export default function Main(){
             </div>
             <div className="items_content_container">
               
-              <ItemSection section="combo" />
-              <ItemSection section="sandwich" />
-              <ItemSection section="fries" />
-              <ItemSection section="other" />
+              <ItemSection sectionName="combo" sectionData={ItemData.comboSection}/>
+              <ItemSection sectionName="sandwich" sectionData={ItemData.sandwichSection}/>
+              <ItemSection sectionName="fries" sectionData={ItemData.friesSection}/>
+              <ItemSection sectionName="other" sectionData={ItemData.otherSection}/>
               
             </div>
           </div>

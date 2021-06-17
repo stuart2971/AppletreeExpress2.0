@@ -9,6 +9,7 @@ import "./styles/css/normalize.css"
 import "./styles/css/webflow.css"
 import "./styles/css/appletreeexpress2-0.webflow.css"
 import Cart from "./Cart"
+import ItemData from "./ItemData"
 
 function App() {
 

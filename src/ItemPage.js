@@ -90,7 +90,6 @@ export default function ItemPage(){
     if(JSON.stringify(item) === JSON.stringify({}))
       return <div>Loading...</div>
 
-    console.log(data)
     return (
       <div className="section">
       <div className="header">
