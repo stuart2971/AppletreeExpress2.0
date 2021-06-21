@@ -3,7 +3,7 @@ import CartItem from "./CartItem"
 import Cart from "./Cart"
 import { useEffect, useState } from 'react';
 
-import logo from "./styles/images/tree.png"
+import logo from "./styles/images/logo.jpg"
 
 import CheckoutSection from "./Checkout/CheckoutSection"
 import ItemData from "./ItemData";
@@ -41,16 +41,15 @@ export default function Main(){
         </div>
         <div className="content_container">
           <div className="items_section_container">
-            <div className="items_header">
-              <div className="item_header_container">
-                <a onClick={() => goToSection("combo")} className="item_headers_text">Combos</a>
-                <a onClick={() => goToSection("sandwich")} className="item_headers_text">Sandwiches</a>
-                <a onClick={() => goToSection("fries")} className="item_headers_text">Fries</a>
-                <a onClick={() => goToSection("other")} className="item_headers_text">Other</a>
-              </div>
-            </div>
             <div className="items_content_container">
-              
+              <div className="items_header">
+                <div className="item_header_container">
+                  <a onClick={() => goToSection("combo")} className="item_headers_text">Combos</a>
+                  <a onClick={() => goToSection("sandwich")} className="item_headers_text">Sandwiches</a>
+                  <a onClick={() => goToSection("fries")} className="item_headers_text">Fries</a>
+                  <a onClick={() => goToSection("other")} className="item_headers_text">Other</a>
+                </div>
+              </div>
               <ItemSection sectionName="combo" sectionData={ItemData.comboSection}/>
               <ItemSection sectionName="sandwich" sectionData={ItemData.sandwichSection}/>
               <ItemSection sectionName="fries" sectionData={ItemData.friesSection}/>
