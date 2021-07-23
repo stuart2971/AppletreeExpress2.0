@@ -1,0 +1,97 @@
+{
+    "modules": [
+        {
+            "objKey": "name",
+            "type": "text",
+            "placeHolder": "Who does this sandwich belong to?",
+            "required": true
+        },
+        {
+            "type": "checkbox",
+            "required": false,
+            "options": [
+                {
+                    "option": "Lettuce",
+                    "objKey": "lettuce"
+                },
+                {
+                    "option": "Tomato",
+                    "objKey": "tomato"
+                },
+                {
+                    "option": "Cucumber",
+                    "objKey": "cucumber"
+                },
+                {
+                    "option": "Onion",
+                    "objKey": "onion"
+                }
+            ]
+        },
+        {
+            "objKey": "spice",
+            "type": "dropdown",
+            "required": true,
+            "options": [
+                {
+                    "option": "Spice Level",
+                    "value": ""
+                },
+                {
+                    "option": "No spice",
+                    "value": "none"
+                },
+                {
+                    "option": "Little spice",
+                    "value": "little"
+                },
+                {
+                    "option": "Medium spice",
+                    "value": "medium"
+                },
+                {
+                    "option": "Lots of spice",
+                    "value": "spicy"
+                }
+            ]
+        },
+        {
+            "objKey": "cheese",
+            "type": "dropdown",
+            "required": false,
+            "options": [
+                {
+                    "option": "Cheese (optional)",
+                    "value": ""
+                },
+                {
+                    "option": "Cheddar (+$0.75)",
+                    "value": "cheddar",
+                    "extraCost": {
+                        "$numberDouble": "0.75"
+                    }
+                },
+                {
+                    "option": "Mozzarella (+$0.75)",
+                    "value": "mozzarella"
+                },
+                {
+                    "option": "Feta (+$0.75)",
+                    "value": "feta"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "placeHolder": "Extra Instructions (optional)",
+            "objKey": "extraInstructions",
+            "required": false
+        }
+    ],
+    "name": "Beef Sandwich",
+    "image": "https://i.ibb.co/kDYHHSH/burger.png",
+    "price": 6.64,
+    "description": "this is temporary.  It is a placeholder to fill in some space.  ",
+    "url_path": "beef_sandwich",
+    "type": "sandwich"
+}

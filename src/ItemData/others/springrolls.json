@@ -1,0 +1,16 @@
+{
+    "modules": [
+        {
+            "type": "text",
+            "placeHolder": "Extra Instructions (optional)",
+            "objKey": "extraInstructions",
+            "required": false
+        }
+    ],
+    "name": "Spring Rolls x3",
+    "image": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1920,format=auto,quality=50/https://cdn.doordash.com/media/photos/2039bd40-1a76-43c4-9522-e06fd839575f-retina-large-jpeg",
+    "price": 0.95,
+    "description": "this is temporary.  It is a placeholder to fill in some space.  ",
+    "url_path": "spring_rolls",
+    "type": "other"
+}

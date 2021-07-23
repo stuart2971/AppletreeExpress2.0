@@ -1,0 +1,121 @@
+{
+    "modules": [
+        {
+            "objKey": "name",
+            "type": "text",
+            "placeHolder": "Who does this sandwich belong to?",
+            "required": true
+        },
+        {
+            "objKey": "spice",
+            "type": "dropdown",
+            "required": true,
+            "options": [
+                {
+                    "option": "Spice Level",
+                    "value": ""
+                },
+                {
+                    "option": "No spice",
+                    "value": "none"
+                },
+                {
+                    "option": "Little spice",
+                    "value": "little"
+                },
+                {
+                    "option": "Medium spice",
+                    "value": "medium"
+                },
+                {
+                    "option": "Lots of spice",
+                    "value": "spicy"
+                }
+            ]
+        },
+        {
+            "type": "checkbox",
+            "required": false,
+            "options": [
+                {
+                    "option": "Lettuce",
+                    "objKey": "lettuce"
+                },
+                {
+                    "option": "Tomato",
+                    "objKey": "tomato"
+                },
+                {
+                    "option": "Cucumber",
+                    "objKey": "cucumber"
+                },
+                {
+                    "option": "Onion",
+                    "objKey": "onion"
+                }
+            ]
+        },
+        {
+            "objKey": "sideType",
+            "type": "dropdown",
+            "required": true,
+            "options": [
+                {
+                    "option": "Side Type",
+                    "value": ""
+                },
+                {
+                    "option": "Spring Rolls",
+                    "value": "spring rolls"
+                },
+                {
+                    "option": "Iced tea",
+                    "value": "iced tea"
+                },
+                {
+                    "option": "Water",
+                    "value": "water"
+                },
+                {
+                    "option": "Root Beer",
+                    "value": "root beer"
+                },
+                {
+                    "option": "Pepsi",
+                    "value": "pepsi"
+                },
+                {
+                    "option": "Diet Pepsi",
+                    "value": "diet pepsi"
+                },
+                {
+                    "option": "Ginger Ale",
+                    "value": "ginger ale"
+                },
+                {
+                    "option": "Dr. Pepper",
+                    "value": "dr.pepper"
+                },
+                {
+                    "option": "Crush (orange)",
+                    "value": "orange crush"
+                },
+                {
+                    "option": "Crush (pink)",
+                    "value": "pink crush"
+                },
+                {
+                    "option": "Mountain Dew",
+                    "value": "mountain dew"
+                }
+            ]
+        }
+    ],
+    "name": "Combo 3",
+    "image": "https://i.ibb.co/w7H0DPm/combo3.jpg",
+    "price": 5.31,
+    "description": "this is temporary.  It is a placeholder to fill in some space.  ",
+    "url_path": "combo_3",
+    "note": "This combo includes a falafel sandwich with either three spring rolls or a beverage (can not choose monster energy drink)",
+    "type": "combo"
+}

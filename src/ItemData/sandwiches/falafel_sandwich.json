@@ -1,0 +1,71 @@
+{
+    "modules": [
+        {
+            "objKey": "name",
+            "type": "text",
+            "placeHolder": "Who does this sandwich belong to?",
+            "required": true
+        },
+        {
+            "type": "checkbox",
+            "required": false,
+            "options": [
+                {
+                    "option": "Lettuce",
+                    "objKey": "lettuce"
+                },
+                {
+                    "option": "Tomato",
+                    "objKey": "tomato"
+                },
+                {
+                    "option": "Cucumber",
+                    "objKey": "cucumber"
+                },
+                {
+                    "option": "Onion",
+                    "objKey": "onion"
+                }
+            ]
+        },
+        {
+            "objKey": "spice",
+            "type": "dropdown",
+            "required": true,
+            "options": [
+                {
+                    "option": "Spice Level",
+                    "value": ""
+                },
+                {
+                    "option": "No spice",
+                    "value": "none"
+                },
+                {
+                    "option": "Little spice",
+                    "value": "little"
+                },
+                {
+                    "option": "Medium spice",
+                    "value": "medium"
+                },
+                {
+                    "option": "Lots of spice",
+                    "value": "spicy"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "placeHolder": "Extra Instructions (optional)",
+            "objKey": "extraInstructions",
+            "required": false
+        }
+    ],
+    "name": "Falafel Sandwich",
+    "image": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1920,format=auto,quality=50/https://cdn.doordash.com/media/photos/1118afa2-61ab-4367-82d3-ada5c671ecb9-retina-large-jpeg",
+    "price": 4.86,
+    "description": "this is temporary.  It is a placeholder to fill in some space.  ",
+    "url_path": "falafel_sandwich",
+    "type": "sandwich"
+}

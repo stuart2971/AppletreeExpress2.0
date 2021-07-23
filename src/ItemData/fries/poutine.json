@@ -1,0 +1,16 @@
+{
+    "modules": [
+        {
+            "type": "text",
+            "placeHolder": "Extra Instructions (optional)",
+            "objKey": "extraInstructions",
+            "required": false
+        }
+    ],
+    "name": "Poutine",
+    "image": "https://img.cdn4dd.com/cdn-cgi/image/fit=contain,width=1920,format=auto,quality=50/https://cdn.doordash.com/media/photos/ccd08947-6048-464f-8012-f7f28b3853a2-retina-large-jpeg",
+    "price": 5.31,
+    "description": "this is temporary.  It is a placeholder to fill in some space.  ",
+    "url_path": "poutine",
+    "type": "fries"
+}
